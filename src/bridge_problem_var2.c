@@ -1,9 +1,17 @@
+/*
+ * Not the finished version of this bridge problem need to add a few things
+ * macro for amount of people at a time needs to be changed in order to be a variable that is passed by the user
+ * need to add constraint enforcement so that a user can't pick a number too big and must pick an integer
+ * could make the output an interactive terminal in order to better display the crossing in a fun way
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
 #include <semaphore.h>
 #include <unistd.h>
 
+//macro that defines max number of people that can be on the bridge at one time
 #define MAX_NUMBER_PEOPLE 5
 //need to make sure I take the number of people going across the bridge as an input
 sem_t north_full_sem;

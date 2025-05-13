@@ -35,3 +35,8 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+/README_files
+/README.html
+/src/advanced
+/src/simple

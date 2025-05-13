@@ -1,9 +1,15 @@
+/*
+ * need to make it so that there is no input for this function and it just sends a static number of people
+ * need to change it back to only 1 person at a time
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
 #include <semaphore.h>
 #include <unistd.h>
 
+//a macro that defines that max number of people allowed to cross the bridge at the same time
 #define MAX_NUMBER_PEOPLE 5
 //need to make sure I take the number of people going across the bridge as an input
 sem_t north_full_sem;
@@ -34,9 +40,8 @@ void *north(void *thread_n){
 		sem_wait(&can_go_south_sem);
 	}
 	pthread_mutex_unlock(&mutex);
-
-	//need to create the critcal section which will increment north and south total respectively
-	sleep(random);	
+	sleep(1);
+	//need to create the critcal section which will increment north and south total respectively	
 	pthread_mutex_lock(&increment_mutex);
 	northTotal++;
 	printf("Total number of people passed north :%d currently there are %d people on the bridge\n", northTotal, currently_going_north + currently_going_south);
@@ -64,9 +69,8 @@ void *south(void *thread_n){
 		sem_wait(&can_go_north_sem);
 	}
 	pthread_mutex_unlock(&mutex);
-
-	//need to create the critcal section which will increment north and south total respectively
-	sleep(random);
+	sleep(1);
+	//need to create the critcal section which will increment north and south total respectively	
 	pthread_mutex_lock(&increment_mutex);
 	southTotal++;
 	printf("Total number of people passed south :%d currently there are %d people on the bridge\n", southTotal, currently_going_north +  currently_going_south);
@@ -84,7 +88,7 @@ void *south(void *thread_n){
 
 int main(){
 	int size = 0;
-        printf("Maximum number of people who can cross the bridge: ");
+        printf("Number of People Crossing the Bridge: ");
         scanf("%d", &size);
         SIZE = size * 2;
 	//intialize counting variables
